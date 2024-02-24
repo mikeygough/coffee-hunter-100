@@ -1,0 +1,16 @@
+{% extends 'base.html' %} {% from "_render_field.html" import
+render_field %} {% block content %}
+
+<h1>Sign Up</h1>
+
+<form action="/signup" method="POST">
+  {{ form.csrf_token }}
+  <fieldset>
+    <legend>Enter your credentials</legend>
+
+    {{ render_field(form.username) }} {{ render_field(form.password)
+    }} {{ form.submit(class="btn") }}
+  </fieldset>
+</form>
+
+{% endblock %}

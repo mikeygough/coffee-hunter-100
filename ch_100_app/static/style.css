@@ -1,0 +1,51 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fafaf9;
+}
+
+#base-content {
+  font-family: 'Open Sans', sans-serif;
+  color: #57534e;
+  width: 70%;
+  background-color: white;
+  padding: 20px;
+}
+
+.nav {
+  margin-bottom: 1rem;
+}
+
+.nav-link {
+  color: #57534e;
+}
+
+fieldset {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0;
+  padding: 20px;
+}
+
+fieldset * {
+  margin: 5px;
+}
+
+fieldset input {
+  padding: 5px;
+}
+
+input[type='submit'] {
+  width: 150px;
+  align-self: flex-end;
+  color: #57534e;
+}
+
+.btn {
+  background-color: #fbbf24;
+}
+
+.btn:hover {
+  background-color: #f59e0b;
+}
