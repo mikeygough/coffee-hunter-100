@@ -22,10 +22,6 @@
   </head>
   <body>
     <div id="base-content">
-      {% for message in get_flashed_messages() %}
-      <p>{{ message }}</p>
-      {% endfor %}
-
       <ul class="nav nav-tabs">
         <li>
           <a class="nav-link" href="/">Home</a>
@@ -43,6 +39,11 @@
         </li>
         {% endif %}
       </ul>
+      
+      {% for message in get_flashed_messages() %}
+        <p>{{ message }}</p>
+      {% endfor %}
+      
 
       {% if current_user.is_authenticated %}
       <p>You are logged in as {{ current_user.username }}</p>
