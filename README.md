@@ -4,7 +4,35 @@ Coffee Hunter 100 is a field note application for recording the wonderful world 
 
 ## Development Notes
 
-- Add Elevation
+NA
+
+## Dummy Data
+
+**Bean**
+
+Santa Rita
+
+Colombia
+
+Caturra
+
+Washed
+
+Light Roast
+
+---
+
+Don Angel
+
+Guatemala
+
+Caturra
+
+Washed
+
+Light Roast
+
+---
 
 ### Reference
 

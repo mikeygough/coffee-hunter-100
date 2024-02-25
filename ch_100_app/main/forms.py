@@ -20,8 +20,10 @@ from ch_100_app.models import (
     MouthfeelChoices,
 )
 
+
 # from wtforms.fields.html5 import URLField
-# from wtforms.ext.sqlalchemy.fields import QuerySelectField
+from wtforms.ext.sqlalchemy.fields import QuerySelectField
+from wtforms.fields.html5 import DateField
 from wtforms.validators import DataRequired, Length, NumberRange
 from ch_100_app.models import User, Bean, Note
 
@@ -76,11 +78,13 @@ class BeanForm(FlaskForm):
 class NoteForm(FlaskForm):
     """Form for adding/updating a Note."""
 
+    bean = QuerySelectField("Bean", query_factory=lambda: Bean.query, allow_blank=False)
+
     order = SelectField("Order", choices=[("", "")] + OrderCategory.choices())
 
     brew_method = SelectField("Brew Method", choices=[("", "")] + BrewMethod.choices())
 
-    date_time = DateField("Date")
+    date_recorded = DateField("Date", format="%Y-%m-%d")
 
     observations = TextAreaField(
         "Observations",

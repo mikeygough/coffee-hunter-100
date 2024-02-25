@@ -14,7 +14,8 @@ main = Blueprint("main", __name__)
 
 @main.route("/")
 def homepage():
-    return render_template("home.html")
+    beans = Bean.query.all()
+    return render_template("home.html", beans=beans)
 
 
 @main.route("/new_bean", methods=["GET", "POST"])
@@ -29,7 +30,7 @@ def new_bean():
             name=form.name.data,
             cultivar=form.cultivar.data,
             origin=form.origin.data,
-            process=form.wash_process.data,
+            wash_process=form.wash_process.data,
             roast_level=form.roast_level.data,
         )
         # added this ⬇️
@@ -39,7 +40,7 @@ def new_bean():
         db.session.commit()
 
         flash("New bean was created successfully.")
-        return redirect(url_for("main.homepage"))
+        return redirect(url_for("main.bean_detail", bean_id=new_bean.id))
 
     return render_template("new_bean.html", form=form)
 
@@ -52,7 +53,8 @@ def new_note():
 
     # if form was submitted with no errors
     if form.validate_on_submit():
-        new_note = Bean(
+        new_note = Note(
+            bean=form.bean.data,
             order=form.order.data,
             brew_method=form.brew_method.data,
             aroma=form.aromas.data,
@@ -61,10 +63,10 @@ def new_note():
             acidity=form.acidities.data,
             mouthfeel=form.mouthfeels.data,
             observations=form.observations.data,
-            date_time=form.date_time.data,
+            date_recorded=form.date_recorded.data,
         )
         # added this ⬇️
-        new_note = db.session.merge(new_note)
+        # new_note = db.session.merge(new_note)
         # added this ⬆️
         db.session.add(new_note)
         db.session.commit()
@@ -73,3 +75,11 @@ def new_note():
         return redirect(url_for("main.homepage"))
 
     return render_template("new_note.html", form=form)
+
+
+@main.route("/bean/<bean_id>", methods=["GET", "POST"])
+@login_required
+def bean_detail(bean_id):
+    bean = Bean.query.get(bean_id)
+
+    return render_template("bean_detail.html", bean=bean)

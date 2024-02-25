@@ -8,7 +8,7 @@ body {
 #base-content {
   font-family: 'Open Sans', sans-serif;
   color: #57534e;
-  width: 70%;
+  width: 85%;
   background-color: white;
   padding: 20px;
 }
@@ -67,4 +67,28 @@ fieldset {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   list-style: none;
+}
+
+@media screen and (max-width: 800px) {
+  #aromas,
+  #flavors,
+  #aftertastes,
+  #acidities,
+  #mouthfeels {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 615px) {
+  #aromas,
+  #flavors,
+  #aftertastes,
+  #acidities,
+  #mouthfeels {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.bean p:not(:last-child) {
+  margin-bottom: 0;
 }

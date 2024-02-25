@@ -177,9 +177,9 @@ class Note(db.Model):
 
     # Drip, Espresso, French Roast, etc.
     brew_method = db.Column(db.Enum(BrewMethod), default=BrewMethod.DRIP)
-    
-    date_time = db.Column(db.DateTime, default=datetime.utcnow)
-    
+
+    date_recorded = db.Column(db.Date, default=datetime.utcnow)
+
     observations = db.Column(db.Text, nullable=False)
 
     # Sweet, Bright, Perfume, etc.
