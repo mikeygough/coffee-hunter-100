@@ -146,17 +146,11 @@ class Bean(db.Model):
     # Ethiopia, Colombia, Brazil, Costa Rica, Guatemala, Kenya, Panama
     origin = db.Column(db.String(100), nullable=False)
 
-    # ALMA PINEDA, LUZ DARY BURBANO, HUILA COMMUNITY SMALLHOLDERS, VIDES FAMILY
-    producer = db.Column(db.String(100))
-
     # Washed, Natural, Black Honey, etc.
-    wash_process = db.Column(db.Enum(WashProcess), default=WashProcess.OTHER)
-
-    # Individual (such as Hara), or roaster (such as Metric)
-    roasted_by = db.Column(db.String(100))
+    wash_process = db.Column(db.Enum(WashProcess))
 
     # Light roast, Medium roast, etc.
-    roast_level = db.Column(db.Enum(RoastLevel), default=RoastLevel.OTHER)
+    roast_level = db.Column(db.Enum(RoastLevel))
 
     ## ------------ Relationships ------------
 
@@ -183,6 +177,10 @@ class Note(db.Model):
 
     # Drip, Espresso, French Roast, etc.
     brew_method = db.Column(db.Enum(BrewMethod), default=BrewMethod.DRIP)
+    
+    date_time = db.Column(db.DateTime, default=datetime.utcnow)
+    
+    observations = db.Column(db.Text, nullable=False)
 
     # Sweet, Bright, Perfume, etc.
     aroma = db.Column(db.Enum(AromaChoices))
@@ -198,10 +196,6 @@ class Note(db.Model):
 
     # Creamy, Bouncy, Juicy, etc.
     mouthfeel = db.Column(db.Enum(MouthfeelChoices))
-
-    general_notes = db.Column(db.Text, nullable=False)
-
-    date_time = db.Column(db.DateTime, default=datetime.utcnow)
 
     ## ------------ Relationships ------------
     bean_id = db.Column(db.Integer, db.ForeignKey("bean.id"), nullable=False)

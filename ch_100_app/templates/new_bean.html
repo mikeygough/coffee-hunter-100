@@ -1,29 +1,36 @@
 {% extends 'base.html' %} {% from "_render_field.html" import
 render_field %} {% block content %}
 
-<h1>New Bean</h1>
+<h1 class="new-header">New Bean</h1>
 
 <form action="/signup" method="POST">
   {{ form.csrf_token }}
-  <fieldset>
-    <legend>Bean</legend>
 
-    {{ render_field(form.name) }}
+  <section>
+    <fieldset>
+      <legend>Bean Name & Origin</legend>
+      {{ render_field(form.name) }}
+      {{ render_field(form.origin) }}
+    </fieldset>
+  </section>
 
-    {{ render_field(form.cultivar) }}
+  <section>
+    <fieldset>
+      <legend>Cultivar, Wash Process & Roast Level</legend>
 
-    {{ render_field(form.origin) }}
+      {{ render_field(form.cultivar) }}
+      {{ render_field(form.wash_process) }}
+      {{ render_field(form.roast_level) }}
+      
+    </fieldset>
+  </section>
 
-    {{ render_field(form.producer) }}
+  <section>
+    <fieldset>
+      {{ form.submit(class="btn") }}
+    </fieldset>
+  </section>
 
-    {{ render_field(form.wash_process) }}
-
-    {{ render_field(form.roasted_by) }}
-
-    {{ render_field(form.roast_level) }}
-
-    {{ form.submit(class="btn") }}
-  </fieldset>
 </form>
 
 {% endblock %}

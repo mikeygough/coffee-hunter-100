@@ -49,3 +49,22 @@ input[type='submit'] {
 .btn:hover {
   background-color: #f59e0b;
 }
+
+.new-header {
+  text-align: center;
+}
+
+fieldset {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+#aromas,
+#flavors,
+#aftertastes,
+#acidities,
+#mouthfeels {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  list-style: none;
+}

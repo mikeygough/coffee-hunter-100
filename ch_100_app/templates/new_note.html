@@ -1,33 +1,63 @@
 {% extends 'base.html' %} {% from "_render_field.html" import
 render_field %} {% block content %}
 
-<h1>New Note</h1>
+<h1 class="new-header">New Note</h1>
 
 <form action="/signup" method="POST">
   {{ form.csrf_token }}
-  <fieldset>
-    <legend>Note</legend>
 
-    {{ render_field(form.order) }}
+  <section>
+    <fieldset>
+      <legend>Order, Brew Method, Date & Observations</legend>
+      
+      {{ render_field(form.order) }}
+      {{ render_field(form.brew_method) }}
+      {{ render_field(form.date_time) }}
+      {{ render_field(form.observations) }}
+    </fieldset>
+  </section>
 
-    {{ render_field(form.brew_method) }}
+  <section>
+    <fieldset>
+      <legend>Aroma</legend>
+      {{ render_field(form.aromas) }}
+    </fieldset>
+  </section>
 
-    {{ render_field(form.aromas) }}
+  <section>
+    <fieldset>
+      <legend>Flavor</legend>
+      {{ render_field(form.flavors) }}
+    </fieldset>
+  </section>
 
-    {{ render_field(form.flavors) }}
+  <section>
+    <fieldset>
+      <legend>Aftertaste</legend>
+      {{ render_field(form.aftertastes) }}
+    </fieldset>
+  </section>
 
-    {{ render_field(form.aftertastes) }}
+  <section>
+    <fieldset>
+      <legend>Acidity</legend>
+      {{ render_field(form.acidities) }}
+    </fieldset>
+  </section>
 
-    {{ render_field(form.acidities) }}
+  <section>
+    <fieldset>
+      <legend>Mouthfeel</legend>
+      {{ render_field(form.mouthfeels) }}
+    </fieldset>
+  </section>
 
-    {{ render_field(form.mouthfeels) }}
+  <section>
+    <fieldset>
+      {{ form.submit(class="btn") }}
+    </fieldset>
+  </section>
 
-    {{ render_field(form.general_notes) }}
-
-    {{ render_field(form.date_time) }}
-
-    {{ form.submit(class="btn") }}
-  </fieldset>
 </form>
 
 {% endblock %}

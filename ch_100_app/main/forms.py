@@ -30,7 +30,7 @@ class BeanForm(FlaskForm):
     """Form for adding/updating a Bean."""
 
     name = StringField(
-        "Name",
+        "Bean Name",
         validators=[
             DataRequired(),
             Length(
@@ -38,6 +38,7 @@ class BeanForm(FlaskForm):
                 message="Your bean needs a name! (Keep it 60 characters or less).",
             ),
         ],
+        render_kw={"placeholder": "Santa Rita..."},
     )
 
     cultivar = StringField(
@@ -48,6 +49,7 @@ class BeanForm(FlaskForm):
                 message="Your bean needs a cultivar value (keep it 60 characters or less).",
             ),
         ],
+        render_kw={"placeholder": "Arabica, Typica, Geisha..."},
     )
 
     origin = StringField(
@@ -59,31 +61,14 @@ class BeanForm(FlaskForm):
                 message="Your bean needs an origin! (Keep it 100 characters or less).",
             ),
         ],
+        render_kw={"placeholder": "Ethiopia, Colombia, Brazil..."},
     )
 
-    producer = StringField(
-        "Producer",
-        validators=[
-            Length(
-                max=100,
-                message="Your bean needs a producer value (keep it 100 characters or less).",
-            )
-        ],
+    wash_process = SelectField(
+        "Wash Process", choices=[("", "")] + WashProcess.choices()
     )
 
-    wash_process = SelectField("Wash Process", choices=WashProcess.choices())
-
-    roasted_by = StringField(
-        "Roaster",
-        validators=[
-            Length(
-                max=100,
-                message="Your bean needs a roasted_by value (keep it 60 characters or less).",
-            )
-        ],
-    )
-
-    roast_level = SelectField("Roast Level", choices=RoastLevel.choices())
+    roast_level = SelectField("Roast Level", choices=[("", "")] + RoastLevel.choices())
 
     submit = SubmitField("Save Bean")
 
@@ -91,11 +76,19 @@ class BeanForm(FlaskForm):
 class NoteForm(FlaskForm):
     """Form for adding/updating a Note."""
 
-    order = SelectField("Order", choices=OrderCategory.choices())
+    order = SelectField("Order", choices=[("", "")] + OrderCategory.choices())
 
-    brew_method = SelectField("Brew Method", choices=BrewMethod.choices())
+    brew_method = SelectField("Brew Method", choices=[("", "")] + BrewMethod.choices())
 
-    # multi selects start
+    date_time = DateField("Date")
+
+    observations = TextAreaField(
+        "Observations",
+        validators=[
+            DataRequired(),
+        ],
+    )
+
     aromas = SelectMultipleField(
         "Aroma Choices",
         choices=[(choice.name, choice.value) for choice in AromaChoices],
@@ -130,16 +123,5 @@ class NoteForm(FlaskForm):
         widget=widgets.ListWidget(prefix_label=False),
         option_widget=widgets.CheckboxInput(),
     )
-
-    # multi selects end
-
-    general_notes = TextAreaField(
-        "General Notes",
-        validators=[
-            DataRequired(),
-        ],
-    )
-
-    date_time = DateField("Date")
 
     submit = SubmitField("Save Note")

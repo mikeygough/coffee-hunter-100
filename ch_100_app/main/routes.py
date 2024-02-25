@@ -29,13 +29,11 @@ def new_bean():
             name=form.name.data,
             cultivar=form.cultivar.data,
             origin=form.origin.data,
-            producer=form.producer.data,
             process=form.wash_process.data,
-            roasted_by=form.roasted_by.data,
             roast_level=form.roast_level.data,
         )
         # added this ⬇️
-        new_bean = db.session.merge(new_bean)
+        # new_bean = db.session.merge(new_bean)
         # added this ⬆️
         db.session.add(new_bean)
         db.session.commit()
@@ -62,7 +60,7 @@ def new_note():
             aftertaste=form.aftertastes.data,
             acidity=form.acidities.data,
             mouthfeel=form.mouthfeels.data,
-            general_notes=form.general_notes.data,
+            observations=form.observations.data,
             date_time=form.date_time.data,
         )
         # added this ⬇️
