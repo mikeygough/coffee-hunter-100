@@ -34,7 +34,7 @@ def new_bean():
             roast_level=form.roast_level.data,
         )
         # added this ⬇️
-        # new_bean = db.session.merge(new_bean)
+        new_bean = db.session.merge(new_bean)
         # added this ⬆️
         db.session.add(new_bean)
         db.session.commit()
@@ -66,7 +66,7 @@ def new_note():
             date_recorded=form.date_recorded.data,
         )
         # added this ⬇️
-        # new_note = db.session.merge(new_note)
+        new_note = db.session.merge(new_note)
         # added this ⬆️
         db.session.add(new_note)
         db.session.commit()
