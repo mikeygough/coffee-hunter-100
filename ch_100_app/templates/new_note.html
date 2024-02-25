@@ -1,0 +1,33 @@
+{% extends 'base.html' %} {% from "_render_field.html" import
+render_field %} {% block content %}
+
+<h1>New Note</h1>
+
+<form action="/signup" method="POST">
+  {{ form.csrf_token }}
+  <fieldset>
+    <legend>Note</legend>
+
+    {{ render_field(form.order) }}
+
+    {{ render_field(form.brew_method) }}
+
+    {{ render_field(form.aromas) }}
+
+    {{ render_field(form.flavors) }}
+
+    {{ render_field(form.aftertastes) }}
+
+    {{ render_field(form.acidities) }}
+
+    {{ render_field(form.mouthfeels) }}
+
+    {{ render_field(form.general_notes) }}
+
+    {{ render_field(form.date_time) }}
+
+    {{ form.submit(class="btn") }}
+  </fieldset>
+</form>
+
+{% endblock %}

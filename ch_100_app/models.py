@@ -1,8 +1,7 @@
 """Create database models to represent tables."""
 from ch_100_app import db
-from flask_login import UserMixin
-from sqlalchemy_utils import URLType
 from ch_100_app.utils import FormEnum
+from flask_login import UserMixin
 from datetime import datetime
 
 
@@ -17,7 +16,7 @@ class RoastLevel(FormEnum):
     OTHER = "Other"
 
 
-class ProcessMethod(FormEnum):
+class WashProcess(FormEnum):
     """Process Methods."""
 
     WASHED = "Washed"
@@ -136,6 +135,8 @@ class MouthfeelChoices(FormEnum):
 class Bean(db.Model):
     """Bean model."""
 
+    ## ------------ Attributes ------------
+
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(60), nullable=False)
 
@@ -149,21 +150,33 @@ class Bean(db.Model):
     producer = db.Column(db.String(100))
 
     # Washed, Natural, Black Honey, etc.
-    process = db.Column(db.Enum(ProcessMethod), default=ProcessMethod.OTHER)
+    wash_process = db.Column(db.Enum(WashProcess), default=WashProcess.OTHER)
 
     # Individual (such as Hara), or roaster (such as Metric)
     roasted_by = db.Column(db.String(100))
 
     # Light roast, Medium roast, etc.
-    category = db.Column(db.Enum(RoastLevel), default=RoastLevel.OTHER)
+    roast_level = db.Column(db.Enum(RoastLevel), default=RoastLevel.OTHER)
+
+    ## ------------ Relationships ------------
+
+    note = db.relationship("Note", back_populates="bean")
+
+    ## ------------ Methods ------------
+
+    def __str__(self):
+        return f"<Bean: {self.name} from {self.origin}>"
+
+    def __repr__(self):
+        return f"<Bean: {self.name} from {self.origin}>"
 
 
 class Note(db.Model):
     """Note model."""
 
+    ## ------------ Attributes ------------
+
     id = db.Column(db.Integer, primary_key=True)
-    # FK User
-    # FK Bean
 
     # Single Origin / Blend
     order = db.Column(db.Enum(OrderCategory), default=OrderCategory.SINGLE_ORIGIN)
@@ -190,13 +203,31 @@ class Note(db.Model):
 
     date_time = db.Column(db.DateTime, default=datetime.utcnow)
 
+    ## ------------ Relationships ------------
+    bean_id = db.Column(db.Integer, db.ForeignKey("bean.id"), nullable=False)
+    bean = db.relationship("Bean", back_populates="note")
+
+    # FK User
+
 
 class Cafe(db.Model):
     """Cafe model."""
 
+    ## ------------ Attributes ------------
+
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(60), nullable=False)
     location = db.Column(db.String(100), nullable=False)
+
+    ## ------------ Relationships ------------
+
+    ## ------------ Methods ------------
+
+    def __str__(self):
+        return f"<Cafe: {self.name} in {self.location}>"
+
+    def __repr__(self):
+        return f"<Cafe: {self.name} in {self.location}>"
 
 
 class User(UserMixin, db.Model):
@@ -205,3 +236,9 @@ class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), nullable=False, unique=True)
     password = db.Column(db.String(80), nullable=False)
+
+    def __str__(self):
+        return f"<Username: {self.username}>"
+
+    def __repr__(self):
+        return f"<Username: {self.username}>"
