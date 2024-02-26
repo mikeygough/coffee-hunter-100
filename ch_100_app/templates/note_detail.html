@@ -1,0 +1,23 @@
+{% extends 'base.html' %} 
+
+{% block content %} 
+
+<h1>{{ note.id }}</h1>
+
+<p><strong>Order:</strong> {{ note.order }}</p>
+
+<p><strong>Brew Method:</strong> {{ note.brew_method }}</p>
+
+<p><strong>Date Recorded:</strong> {{ note.date_recorded }}</p>
+
+<p><strong>Observations:</strong> {{ note.observations }}</p>
+
+<p><strong>{{ note.aromas }}</strong></p>
+<p><strong>{{ note.aromas[0].name }}</strong></p>
+<p><strong>{{ note.flavors }}</strong></p>
+<p><strong>{{ note.aftertastes }}</strong></p>
+<p><strong>{{ note.acidities }}</strong></p>
+<p><strong>{{ note.mouthfeels }}</strong></p>
+
+{% endblock %}
+

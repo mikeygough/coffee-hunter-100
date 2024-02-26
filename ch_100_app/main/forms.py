@@ -67,10 +67,16 @@ class BeanForm(FlaskForm):
     )
 
     wash_process = SelectField(
-        "Wash Process", choices=[("", "")] + WashProcess.choices()
+        "Wash Process",
+        validators=[DataRequired()],
+        choices=[("", "")] + WashProcess.choices(),
     )
 
-    roast_level = SelectField("Roast Level", choices=[("", "")] + RoastLevel.choices())
+    roast_level = SelectField(
+        "Roast Level",
+        validators=[DataRequired()],
+        choices=[("", "")] + RoastLevel.choices(),
+    )
 
     submit = SubmitField("Save Bean")
 
@@ -78,7 +84,9 @@ class BeanForm(FlaskForm):
 class NoteForm(FlaskForm):
     """Form for adding/updating a Note."""
 
-    bean = QuerySelectField("Bean", query_factory=lambda: Bean.query, allow_blank=False)
+    bean = QuerySelectField(
+        "Bean", query_factory=lambda: Bean.query.all(), allow_blank=False
+    )
 
     order = SelectField("Order", choices=[("", "")] + OrderCategory.choices())
 
@@ -89,7 +97,9 @@ class NoteForm(FlaskForm):
     observations = TextAreaField(
         "Observations",
         validators=[
-            DataRequired(),
+            DataRequired(
+                message="Coffee hunters must provide additional observations!"
+            ),
         ],
     )
 
