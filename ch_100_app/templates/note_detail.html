@@ -1,8 +1,6 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %} {% block content %}
 
-{% block content %} 
-
-<h1>{{ note.id }}</h1>
+<h1>{{ note.order}} {{ note.bean.name }}</h1>
 
 <p><strong>Order:</strong> {{ note.order }}</p>
 
@@ -12,12 +10,34 @@
 
 <p><strong>Observations:</strong> {{ note.observations }}</p>
 
-<p><strong>{{ note.aromas }}</strong></p>
-<p><strong>{{ note.aromas[0].name }}</strong></p>
-<p><strong>{{ note.flavors }}</strong></p>
-<p><strong>{{ note.aftertastes }}</strong></p>
-<p><strong>{{ note.acidities }}</strong></p>
-<p><strong>{{ note.mouthfeels }}</strong></p>
+<div class="bean_detail_order">
+  <div>
+    <h3>Aromas</h3>
+    {% set aroma_names = [] %} {% for aroma in note.aromas %} {% set _
+    = aroma_names.append(aroma.name) %} {% endfor %} {{
+    aroma_names|join(', ') }}
+
+    <h3>Flavors</h3>
+    {% set flavor_names = [] %} {% for flavor in note.flavors %} {%
+    set _ = flavor_names.append(flavor.name) %} {% endfor %} {{
+    flavor_names|join(', ') }}
+
+    <h3>Aftertastes</h3>
+    {% set aftertaste_names = [] %} {% for aftertaste in
+    note.aftertastes %} {% set _ =
+    aftertaste_names.append(aftertaste.name) %} {% endfor %} {{
+    aftertaste_names|join(', ') }}
+
+    <h3>Acidities</h3>
+    {% set acidity_names = [] %} {% for acidity in note.acidities %}
+    {% set _ = acidity_names.append(acidity.name) %} {% endfor %} {{
+    acidity_names|join(', ') }}
+
+    <h3>Mouthfeels</h3>
+    {% set mouthfeel_names = [] %} {% for mouthfeel in note.mouthfeels
+    %} {% set _ = mouthfeel_names.append(mouthfeel.name) %} {% endfor
+    %} {{ mouthfeel_names|join(', ') }}
+  </div>
+</div>
 
 {% endblock %}
-

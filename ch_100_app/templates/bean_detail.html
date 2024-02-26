@@ -4,11 +4,63 @@
 
 <h1>{{ bean.name }}</h1>
 
-<p><strong>Cultivar:</strong> {{ bean.cultivar }}</p>
-
 <p><strong>Origin:</strong> {{ bean.origin }}</p>
+
+<p><strong>Cultivar:</strong> {{ bean.cultivar }}</p>
 
 <p><strong>Wash Process:</strong> {{ bean.wash_process }}</p>
 
+<p><strong>Roast Level:</strong> {{ bean.roast_level }}</p>
+
+<h2>Notes</h1>
+
+{% if notes %}
+  {% for note in notes %}
+    <div class="bean_detail_order">
+      <p><strong>{{ note.order}} order recorded on {{ note.date_recorded }}</strong></p>
+      
+      <div>
+
+        <p><strong>Observations:</strong> {{ note.observations }}</p>
+        
+        {% set aroma_names = [] %}
+        {% for aroma in note.aromas %}
+            {% set _ = aroma_names.append(aroma.name) %}
+        {% endfor %}
+        <p><strong>Aromas:</strong> {{ aroma_names|join(', ') }}</p>
+      
+        {% set flavor_names = [] %}
+        {% for flavor in note.flavors %}
+            {% set _ = flavor_names.append(flavor.name) %}
+        {% endfor %}
+        <p><strong>Flavors:</strong> {{ flavor_names|join(', ') }}</p>
+
+        {% set aftertaste_names = [] %}
+        {% for aftertaste in note.aftertastes %}
+            {% set _ = aftertaste_names.append(aftertaste.name) %}
+        {% endfor %}
+        <p><strong>Aftertastes:</strong> {{ aftertaste_names|join(', ') }}</p>
+
+        {% set acidity_names = [] %}
+        {% for acidity in note.acidities %}
+            {% set _ = acidity_names.append(acidity.name) %}
+        {% endfor %}
+        <p><strong>Accidities:</strong> {{ acidity_names|join(', ') }}</p>
+
+        {% set mouthfeel_names = [] %}
+        {% for mouthfeel in note.mouthfeels %}
+            {% set _ = mouthfeel_names.append(mouthfeel.name) %}
+        {% endfor %}
+        <p><strong>Mouthfeels:</strong> {{ mouthfeel_names|join(', ') }}</p>
+      
+      </div>    </div>
+  {% endfor %}
+
+{% else %}
+  
+  <p><strong>It looks like you haven't added any notes for this bean!</strong></p>
+  <a href="{{ url_for('main.new_note') }}" class="btn">Add a Note!</a>
+
+{% endif %}
 {% endblock %}
 

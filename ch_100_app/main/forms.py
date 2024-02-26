@@ -24,7 +24,7 @@ from ch_100_app.models import (
 # from wtforms.fields.html5 import URLField
 from wtforms.ext.sqlalchemy.fields import QuerySelectField
 from wtforms.fields.html5 import DateField
-from wtforms.validators import DataRequired, Length, NumberRange
+from wtforms.validators import DataRequired, Length
 from ch_100_app.models import User, Bean, Note
 
 

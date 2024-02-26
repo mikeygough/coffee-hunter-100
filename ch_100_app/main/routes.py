@@ -83,6 +83,7 @@ def new_note():
             brew_method=form.brew_method.data,
             observations=form.observations.data,
             date_recorded=form.date_recorded.data,
+            created_by_id=current_user.id,
         )
 
         # extend with bridge table references
@@ -99,7 +100,7 @@ def new_note():
         db.session.commit()
 
         flash("New note was created successfully.")
-        return redirect(url_for("main.homepage"))
+        return redirect(url_for("main.note_detail", note_id=new_note.id))
 
     return render_template("new_note.html", form=form)
 
@@ -108,8 +109,9 @@ def new_note():
 @login_required
 def bean_detail(bean_id):
     bean = Bean.query.get(bean_id)
+    notes = bean.notes
 
-    return render_template("bean_detail.html", bean=bean)
+    return render_template("bean_detail.html", bean=bean, notes=notes)
 
 
 @main.route("/note/<note_id>", methods=["GET", "POST"])

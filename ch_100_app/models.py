@@ -186,7 +186,7 @@ class Bean(db.Model):
     roast_level = db.Column(db.Enum(RoastLevel), nullable=False)
 
     ## ------------ Relationships ------------
-    note = db.relationship("Note", back_populates="bean")
+    notes = db.relationship("Note", back_populates="bean")
 
     ## ------------ Methods ------------
     def __str__(self):
@@ -212,7 +212,7 @@ class Note(db.Model):
     observations = db.Column(db.Text, nullable=False)
 
     ## ------------ Relationships ------------
-    bean = db.relationship("Bean", back_populates="note")
+    bean = db.relationship("Bean", back_populates="notes")
     created_by = db.relationship("User")
 
     aromas = db.relationship(

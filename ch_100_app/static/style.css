@@ -92,3 +92,12 @@ fieldset {
 .bean p:not(:last-child) {
   margin-bottom: 0;
 }
+
+.bean_detail_order {
+  border-bottom: 1px solid #78716c;
+  margin: 1rem 0px;
+}
+
+h3 {
+  margin: 1rem 0px;
+}
