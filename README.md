@@ -56,6 +56,20 @@ Washed
 
 Light Roast
 
+## Running Tests
+
+To run _all tests_, run the following from the root project directory:
+
+`python -m unittest discover`
+
+To run _all tests from a single file_, run the following:
+
+`python -m unittest ch_100_app.main.tests`
+
+To run _one specific test_, un the following:
+
+`python -m unittest ch_100_app.main.tests.AuthTests.test_signup`
+
 ### Reference
 
 #### Virtual Environments
