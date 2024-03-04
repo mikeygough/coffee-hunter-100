@@ -229,3 +229,26 @@ class MainTests(unittest.TestCase):
         self.assertIsNotNone(note)
         self.assertEqual(note.bean.id, 1)
         self.assertEqual(note.observations, "Fruity!")
+
+    def test_update_bean(self):
+        """Test updating a bean."""
+        # Set up
+        create_user()
+        create_beans()
+        login(self.app, "mikey", "password")
+
+        # Make POST request with data
+        post_data = {
+            "name": "New Name",
+            "origin": "New Origin",
+            "cultivar": "New Cultivar",
+            "wash_process": "NATURAL",
+            "roast_level": "LIGHT_ROAST",
+        }
+
+        self.app.post("/bean/1", data=post_data)
+        bean = Bean.query.get(1)
+        self.assertIsNotNone(bean)
+        self.assertEqual(bean.name, "New Name")
+        self.assertEqual(bean.origin, "New Origin")
+        self.assertEqual(bean.cultivar, "New Cultivar")
