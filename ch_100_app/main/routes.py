@@ -41,10 +41,9 @@ def new_bean():
             origin=form.origin.data,
             wash_process=form.wash_process.data,
             roast_level=form.roast_level.data,
+            created_by_id=current_user.id,
         )
-        # added this ⬇️
-        new_bean = db.session.merge(new_bean)
-        # added this ⬆️
+
         db.session.add(new_bean)
         db.session.commit()
 
@@ -93,9 +92,6 @@ def new_note():
         new_note.acidities.extend(acidities)
         new_note.mouthfeels.extend(mouthfeels)
 
-        # added this ⬇️
-        new_note = db.session.merge(new_note)
-        # added this ⬆️
         db.session.add(new_note)
         db.session.commit()
 
@@ -109,16 +105,29 @@ def new_note():
 @login_required
 def bean_detail(bean_id):
     bean = Bean.query.get(bean_id)
+    form = BeanForm(obj=bean)
     notes = bean.notes
 
-    return render_template("bean_detail.html", bean=bean, notes=notes)
+    # check if valid
+    if form.validate_on_submit():
+        # update values
+        bean.name = form.name.data
+        bean.cultivar = form.cultivar.data
+        bean.origin = form.origin.data
+        bean.wash_process = form.wash_process.data
+        bean.roast_level = form.roast_level.data
+
+        db.session.commit()
+
+        flash("Bean updated successfully.")
+        return redirect(url_for("main.bean_detail", bean_id=bean.id))
+
+    return render_template("bean_detail.html", bean=bean, form=form, notes=notes)
 
 
 @main.route("/note/<note_id>", methods=["GET", "POST"])
 @login_required
 def note_detail(note_id):
     note = Note.query.get(note_id)
-    print(note)
-    print(note.flavors)
 
     return render_template("note_detail.html", note=note)

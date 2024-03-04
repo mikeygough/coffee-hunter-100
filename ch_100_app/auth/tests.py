@@ -1,8 +1,5 @@
-import unittest
 import app
 from unittest import TestCase
-
-from datetime import date
 
 from ch_100_app.extensions import app, db, bcrypt
 from ch_100_app.models import User

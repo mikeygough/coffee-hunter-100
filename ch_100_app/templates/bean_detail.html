@@ -1,5 +1,5 @@
 {% extends 'base.html' %} 
-
+{% from "_render_field.html" import render_field %}
 {% block content %} 
 
 <h1>{{ bean.name }}</h1>
@@ -12,12 +12,43 @@
 
 <p><strong>Roast Level:</strong> {{ bean.roast_level }}</p>
 
+<h2>Edit Bean</h2>
+
+<form method="POST" action="{{ url_for('main.bean_detail', bean_id=bean.id) }}">
+    {{ form.csrf_token }}
+    <section>
+    <fieldset>
+      <legend>Bean Name & Origin</legend>
+      {{ render_field(form.name) }}
+      {{ render_field(form.origin) }}
+    </fieldset>
+  </section>
+
+  <section>
+    <fieldset>
+      <legend>Cultivar, Wash Process & Roast Level</legend>
+
+      {{ render_field(form.cultivar) }}
+      {{ render_field(form.wash_process) }}
+      {{ render_field(form.roast_level) }}
+      
+    </fieldset>
+  </section>
+
+  <section>
+    <fieldset>
+      {{ form.submit(class="btn") }}
+    </fieldset>
+  </section>
+
+</form>
+
 <h2>Notes</h1>
 
 {% if notes %}
   {% for note in notes %}
     <div class="bean_detail_order">
-      <p><strong>{{ note.order}} order recorded on {{ note.date_recorded }}</strong></p>
+      <a href="/note/{{ note.id }}"<p><strong>{{ note.order}} order recorded on {{ note.date_recorded }}</strong></p></a>
       
       <div>
 

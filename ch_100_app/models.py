@@ -1,5 +1,7 @@
 """Create database models to represent tables."""
-from ch_100_app import db
+from ch_100_app.extensions import db
+
+# from ch_100_app import db
 from ch_100_app.utils import FormEnum
 from flask_login import UserMixin
 from datetime import datetime
@@ -184,9 +186,11 @@ class Bean(db.Model):
     wash_process = db.Column(db.Enum(WashProcess), nullable=False)
     # Light roast, Medium roast, etc.
     roast_level = db.Column(db.Enum(RoastLevel), nullable=False)
+    created_by_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
 
     ## ------------ Relationships ------------
     notes = db.relationship("Note", back_populates="bean")
+    created_by = db.relationship("User")
 
     ## ------------ Methods ------------
     def __str__(self):
