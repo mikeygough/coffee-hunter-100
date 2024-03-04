@@ -50,6 +50,16 @@ input[type='submit'] {
   background-color: #f59e0b;
 }
 
+.delete {
+  color: #57534e;
+  background-color: #f87171;
+}
+
+.delete:hover {
+  color: #57534e;
+  background-color: #ef4444;
+}
+
 .new-header {
   text-align: center;
 }

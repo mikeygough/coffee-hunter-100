@@ -252,3 +252,15 @@ class MainTests(unittest.TestCase):
         self.assertEqual(bean.name, "New Name")
         self.assertEqual(bean.origin, "New Origin")
         self.assertEqual(bean.cultivar, "New Cultivar")
+
+    def test_delete_note(self):
+        # Set up
+        create_beans()
+        create_user()
+        login(self.app, "mikey", "password")
+
+        response = self.app.post("/delete_note/1", follow_redirects=True)
+        self.assertEqual(response.status_code, 200)
+
+        deleted_note = Note.query.get(1)
+        self.assertIsNone(deleted_note)

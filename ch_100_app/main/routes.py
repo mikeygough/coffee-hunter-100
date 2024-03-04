@@ -131,3 +131,16 @@ def note_detail(note_id):
     note = Note.query.get(note_id)
 
     return render_template("note_detail.html", note=note)
+
+
+@main.route("/delete_note/<note_id>", methods=["POST"])
+@login_required
+def delete_note(note_id):
+    note = Note.query.get(note_id)
+    bean_id = note.bean_id
+
+    db.session.delete(note)
+    db.session.commit()
+
+    flash("Note deleted successfully", "success")
+    return redirect(url_for("main.bean_detail", bean_id=bean_id))

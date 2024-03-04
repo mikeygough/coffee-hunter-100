@@ -84,7 +84,12 @@
         {% endfor %}
         <p><strong>Mouthfeels:</strong> {{ mouthfeel_names|join(', ') }}</p>
       
+        <form method="POST" action="/delete_note/{{ note.id }}">
+          <button type="submit" class="btn delete">Delete Note</button>
+        </form>
       </div>    </div>
+
+      
   {% endfor %}
 
 {% else %}
