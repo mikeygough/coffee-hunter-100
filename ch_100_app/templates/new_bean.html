@@ -29,9 +29,13 @@ render_field %} {% block content %}
 </form>
 
 <p>
-  Read more about origins, cultivars, wash processes and roast levels.
+  To learn more about coffee origins, cultivars, wash processes and
+  roast levels, checkout
+  <a
+    class="link-primary link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+    href="{{ url_for('main.coffee_context') }}"
+    >Coffee Context</a
+  >.
 </p>
-
-<a href="{{ url_for('main.coffee_context') }}">Coffee Context</a>
 
 {% endblock %}

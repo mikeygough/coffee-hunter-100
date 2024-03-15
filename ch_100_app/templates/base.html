@@ -26,6 +26,11 @@
         <li>
           <a class="nav-link" href="/">Home</a>
         </li>
+        <li>
+          <a class="nav-link" href="/coffee_context"
+            >Coffee Context</a
+          >
+        </li>
         {% if current_user.is_authenticated %}
         <li class="nav-item">
           <a class="nav-link" href="/new_bean">New Bean</a>
@@ -47,12 +52,28 @@
       </ul>
 
       {% for message in get_flashed_messages() %}
-        <div class="alert alert-dark" role="alert">{{ message }}</div>
-      {% endfor %}
-      
-      {% if current_user.is_authenticated %}
-        <p>You are logged in as {{ current_user.username }}</p>
+      <div class="alert alert-dark" role="alert">{{ message }}</div>
+      {% endfor %} {% if current_user.is_authenticated %}
+      <p>You are logged in as {{ current_user.username }}</p>
       {% endif %} {% block content %} {% endblock %}
     </div>
   </body>
+
+  <footer class="footer mt-auto py-3 bg-body-tertiary">
+    <div class="container">
+      <span class="text-body-secondary"
+        >Made by mikey, with love & caffeine.
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          height="24"
+          viewBox="0 -960 960 960"
+          width="24"
+        >
+          <path
+            fill="#fbbf24"
+            d="M160-120v-80h640v80H160Zm160-160q-66 0-113-47t-47-113v-400h640q33 0 56.5 23.5T880-760v120q0 33-23.5 56.5T800-560h-80v120q0 66-47 113t-113 47H320Zm0-80h240q33 0 56.5-23.5T640-440v-320H240v320q0 33 23.5 56.5T320-360Zm400-280h80v-120h-80v120ZM320-360h-80 400-320Z"
+          /></svg
+      ></span>
+    </div>
+  </footer>
 </html>

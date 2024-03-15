@@ -46,6 +46,15 @@ input[type='submit'] {
   background-color: #fbbf24;
 }
 
+#add-a-note {
+  width: 150px;
+}
+
+#add-a-note a {
+  text-decoration: none;
+  color: #57534e;
+}
+
 .btn:hover {
   background-color: #f59e0b;
 }

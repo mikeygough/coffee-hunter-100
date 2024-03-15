@@ -106,6 +106,14 @@ def new_note():
 def bean_detail(bean_id):
     bean = Bean.query.get(bean_id)
     form = BeanForm(obj=bean)
+    # change text from submit to update
+    form.submit.label.text = "Update Bean"
+    # populate wash process and roast level
+    # form.wash_process.label.text = bean.wash_process
+    form.wash_process.value = bean.wash_process
+    form.wash_process.placeholder = bean.wash_process
+    print(form.wash_process)
+    print(bean.wash_process)
     notes = bean.notes
 
     # check if valid

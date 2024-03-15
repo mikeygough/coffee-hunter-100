@@ -37,7 +37,7 @@
 
   <section>
     <fieldset>
-      {{ form.submit(class="btn") }}
+      {{ form.submit(class="btn")}}
     </fieldset>
   </section>
 
@@ -95,7 +95,8 @@
 {% else %}
   
   <p><strong>It looks like you haven't added any notes for this bean!</strong></p>
-  <a href="{{ url_for('main.new_note') }}" class="btn">Add a Note!</a>
+  <button id="add-a-note" class="btn"><a href="{{ url_for('main.new_note') }}">Add a Note</a>
+  
 
 {% endif %}
 {% endblock %}
