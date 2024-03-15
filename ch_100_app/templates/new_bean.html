@@ -1,6 +1,5 @@
-{% extends 'base.html' %}
-{% from "_render_field.html" import render_field %}
-{% block content %}
+{% extends 'base.html' %} {% from "_render_field.html" import
+render_field %} {% block content %}
 
 <h1 class="new-header">New Bean</h1>
 
@@ -10,8 +9,7 @@
   <section>
     <fieldset>
       <legend>Bean Name & Origin</legend>
-      {{ render_field(form.name) }}
-      {{ render_field(form.origin) }}
+      {{ render_field(form.name) }} {{ render_field(form.origin) }}
     </fieldset>
   </section>
 
@@ -19,19 +17,21 @@
     <fieldset>
       <legend>Cultivar, Wash Process & Roast Level</legend>
 
-      {{ render_field(form.cultivar) }}
-      {{ render_field(form.wash_process) }}
-      {{ render_field(form.roast_level) }}
-      
+      {{ render_field(form.cultivar) }} {{
+      render_field(form.wash_process) }} {{
+      render_field(form.roast_level) }}
     </fieldset>
   </section>
 
   <section>
-    <fieldset>
-      {{ form.submit(class="btn") }}
-    </fieldset>
+    <fieldset>{{ form.submit(class="btn") }}</fieldset>
   </section>
-
 </form>
+
+<p>
+  Read more about origins, cultivars, wash processes and roast levels.
+</p>
+
+<a href="{{ url_for('main.coffee_context') }}">Coffee Context</a>
 
 {% endblock %}

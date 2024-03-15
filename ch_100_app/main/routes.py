@@ -144,3 +144,8 @@ def delete_note(note_id):
 
     flash("Note deleted successfully", "success")
     return redirect(url_for("main.bean_detail", bean_id=bean_id))
+
+
+@main.route("/coffee_context")
+def coffee_context():
+    return render_template("coffee_context.html")
