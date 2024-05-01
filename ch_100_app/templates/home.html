@@ -23,5 +23,8 @@
   <p><strong>Cultivar:</strong> {{ bean.cultivar }}</p>
   <p><strong>Wash Process:</strong> {{ bean.wash_process }}</p>
   <p><strong>Roast Level:</strong> {{ bean.roast_level }}</p>
+  <p>
+    <strong>Number of Tasting Notes:</strong> {{ bean.notes|length }}
+  </p>
 </div>
 {% endfor %} {% endblock %}

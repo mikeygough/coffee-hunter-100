@@ -7,7 +7,7 @@ body {
   flex-direction: column;
   align-items: center;
   background-color: #fafaf9;
-  height: 100%;
+  min-height: 100%;
 }
 
 #base-content {
@@ -17,6 +17,7 @@ body {
   background-color: white;
   padding: 20px;
   height: 100%;
+  flex: 1;
 }
 
 .nav {
@@ -128,5 +129,14 @@ h3 {
 }
 
 footer {
-  margin-top: auto;
+  flex-shrink: 0;
+}
+
+#nav-signup,
+#nav-login,
+#nav-logout {
+  margin-right: 2px;
+  border-left: 1px solid #fbbf24;
+  border-top: 1px solid #fbbf24;
+  border-right: 1px solid #fbbf24;
 }

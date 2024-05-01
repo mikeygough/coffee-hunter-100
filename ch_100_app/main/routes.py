@@ -24,7 +24,7 @@ main = Blueprint("main", __name__)
 @main.route("/")
 def homepage():
     beans = []
-    if current_user == True:
+    if current_user.is_authenticated:
         beans = Bean.query.filter_by(created_by_id=current_user.id)
     return render_template("home.html", beans=beans)
 
