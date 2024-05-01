@@ -1,6 +1,5 @@
-{% extends 'base.html' %}
-{% from "_render_field.html" import render_field %}
-{% block content %}
+{% extends 'base.html' %} {% from "_render_field.html" import
+render_field %} {% block content %}
 
 <h1>Log In</h1>
 
@@ -9,13 +8,17 @@
   <fieldset>
     <legend>Enter your credentials</legend>
 
-    {{ render_field(form.username) }}
-
-    {{ render_field(form.password) }}
-
-    {{ form.submit(class="btn") }}
-
+    {{ render_field(form.username) }} {{ render_field(form.password)
+    }} {{ form.submit(class="btn") }}
   </fieldset>
 </form>
+
+<p>Don't have an account?</p>
+<p>
+  To add new beans and save tasting notes please
+  <a class="link-opacity-100-hover" href="/signup"
+    >create an account</a
+  >.
+</p>
 
 {% endblock %}

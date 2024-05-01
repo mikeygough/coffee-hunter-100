@@ -1,16 +1,22 @@
+html {
+  height: 100%;
+}
+
 body {
   display: flex;
   flex-direction: column;
   align-items: center;
   background-color: #fafaf9;
+  height: 100%;
 }
 
 #base-content {
   font-family: 'Open Sans', sans-serif;
   color: #57534e;
-  width: 85%;
+  width: 95%;
   background-color: white;
   padding: 20px;
+  height: 100%;
 }
 
 .nav {
@@ -119,4 +125,8 @@ fieldset {
 
 h3 {
   margin: 1rem 0px;
+}
+
+footer {
+  margin-top: auto;
 }

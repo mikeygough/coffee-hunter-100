@@ -23,7 +23,9 @@ main = Blueprint("main", __name__)
 
 @main.route("/")
 def homepage():
-    beans = Bean.query.all()
+    beans = []
+    if current_user == True:
+        beans = Bean.query.filter_by(created_by_id=current_user.id)
     return render_template("home.html", beans=beans)
 
 
