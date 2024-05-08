@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% from "_render_field.html" import
 render_field %} {% block content %}
 
-<h1 class="new-header">New Note</h1>
+<h1 class="new-header">New Tasting Note</h1>
 
 <form action="/new_note" method="POST">
   {{ form.csrf_token }}
@@ -9,12 +9,11 @@ render_field %} {% block content %}
   <section>
     <fieldset>
       <legend>Bean, Order, Brew Method, Date & Observations</legend>
-      
-      {{ render_field(form.bean) }}
-      {{ render_field(form.order) }}
-      {{ render_field(form.brew_method) }}
-      {{ render_field(form.date_recorded) }}
-      {{ render_field(form.observations) }}
+
+      {{ render_field(form.bean) }} {{ render_field(form.order) }} {{
+      render_field(form.brew_method) }} {{
+      render_field(form.date_recorded) }} {{
+      render_field(form.observations) }}
     </fieldset>
   </section>
 
@@ -54,11 +53,8 @@ render_field %} {% block content %}
   </section>
 
   <section>
-    <fieldset>
-      {{ form.submit(class="btn") }}
-    </fieldset>
+    <fieldset>{{ form.submit(class="btn") }}</fieldset>
   </section>
-
 </form>
 
 {% endblock %}

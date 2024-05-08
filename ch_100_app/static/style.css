@@ -67,7 +67,7 @@ input[type='submit'] {
 }
 
 .delete {
-  color: #57534e;
+  color: black;
   background-color: #f87171;
 }
 
@@ -113,6 +113,11 @@ fieldset {
   #mouthfeels {
     grid-template-columns: repeat(2, 1fr);
   }
+
+  fieldset {
+    width: 100%;
+    padding: 0px;
+  }
 }
 
 .bean p:not(:last-child) {
@@ -120,7 +125,7 @@ fieldset {
 }
 
 .bean_detail_order {
-  border-bottom: 1px solid #78716c;
+  border-bottom: 0.25rem solid #78716c;
   margin: 1rem 0px;
 }
 
@@ -139,4 +144,8 @@ footer {
   border-left: 1px solid #fbbf24;
   border-top: 1px solid #fbbf24;
   border-right: 1px solid #fbbf24;
+}
+
+input[type='checkbox'] {
+  transform: scale(2);
 }

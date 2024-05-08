@@ -43,15 +43,14 @@
 
 </form>
 
-<h2>Notes</h1>
+<h2>Tasting Notes</h1>
 
 {% if notes %}
   {% for note in notes %}
-    <div class="bean_detail_order">
-      <a href="/note/{{ note.id }}"<p><strong>{{ note.order}} order recorded on {{ note.date_recorded }}</strong></p></a>
+    <div class="bean_detail_order card">
+      <div class="card-body">
+        <h5 class="card-title"><a href="/note/{{ note.id }}"<p><strong>{{ note.order}} order recorded on {{ note.date_recorded }}</strong></p></a></h5>
       
-      <div>
-
         <p><strong>Observations:</strong> {{ note.observations }}</p>
         
         {% set aroma_names = [] %}
@@ -87,6 +86,7 @@
         <form method="POST" action="/delete_note/{{ note.id }}">
           <button type="submit" class="btn delete">Delete Note</button>
         </form>
+        <br></br>
       </div>    </div>
 
       
